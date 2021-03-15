@@ -1,0 +1,22 @@
+# Employee Table
++----+-------+--------+-----------+
+| Id | Name  | Salary | ManagerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | NULL      |
+| 4  | Max   | 90000  | NULL      |
++----+-------+--------+-----------+
+
+#Code 1 
+SELECT e.Name as Employee
+FROM Employee e, Employee m
+WHERE e.ManagerId = m.Id AND e.Salary > m.Salary;
+
+#Code 2 - More efficient way using JOIN
+SELECT
+     a.NAME AS Employee
+FROM Employee AS a JOIN Employee AS m
+     ON a.ManagerId = m.Id
+     AND a.Salary > m.Salary
+;

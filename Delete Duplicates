@@ -1,0 +1,15 @@
+# Delete duplicate emails and keep the email with the min Id 
+# Using DELETE
+DELETE
+FROM Person
+Where Id NOT IN
+(SELET * FROM 
+  (SELECT MIN(Id) 
+  FROM Person
+  GROUP BY Email) Temp
+);
+
+#Using Self-Join
+SELECT p1.*
+FROM Person p1, Person p2
+WHERE p1.Email = p2.Email AND p1.Id > p2.Id
